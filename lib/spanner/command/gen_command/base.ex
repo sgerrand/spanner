@@ -147,6 +147,7 @@ defmodule Spanner.GenCommand.Base do
     bundle_name = Keyword.fetch!(opts, :bundle)
     command_name = Keyword.get(opts, :name, default_name)
     primitive? = Keyword.get(opts, :primitive, false)
+    command_type = Keyword.get(opts, :type, :single)
 
     quote location: :keep do
       @behaviour Spanner.GenCommand
@@ -182,6 +183,9 @@ defmodule Spanner.GenCommand.Base do
 
       def primitive?(),
         do: unquote(primitive?)
+
+      def command_type(),
+        do: unquote(command_type)
 
       defoverridable [init: 2]
 
