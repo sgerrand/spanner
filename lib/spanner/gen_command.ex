@@ -115,12 +115,11 @@ defmodule Spanner.GenCommand do
   @callback primitive?() :: boolean()
 
   @doc """
-  Indicates the type of command. May be `:single` or `:multi` referencing how
-  the command is invoked when it is given multiple inputs. `:single` commands
-  are invokes once with a list of inputs. `:multi` commands are invoked once
-  per input supplied.
+  Indicates whether or not a command is chunked. Chunked commands are executed
+  once per item in their input list. Commands that aren't chunked, the default,
+  are executed once for the entire input list.
   """
-  @callback command_type() :: :single | :multi
+  @callback chunked?() :: boolean()
 
   @doc """
   Returns `true` if `module` implements the

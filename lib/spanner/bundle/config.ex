@@ -174,7 +174,7 @@ defmodule Spanner.Bundle.Config do
   defp command_map(module) do
     %{"name" => module.command_name(),
       "primitive" => module.primitive?(),
-      "command_type" => Atom.to_string(module.command_type()),
+      "chunked" => module.chunked?(),
       "version" => version(module),
       "options" => module.options,
       "documentation" => case Code.get_docs(module, :moduledoc) do
